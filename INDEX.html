@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a2e1f">
+  <meta name="description" content="A completely fictional weekend investigation by Yayoung Wisdom. Find out your weekend chaos level!">
+  <title>Weekend Wahala HQ · by Yayoung Wisdom</title>
+  <style>
+    :root {
+      --deep: #0e1f18;
+      --forest: #1b3a2c;
+      --leaf: #2d6a4f;
+      --gold: #f5c542;
+      --cream: #fefae0;
+      --ink: #1b2a1f;
+      --red: #d64b4b;
+      --muted: #6b7f70;
+      --shadow: rgba(0, 0, 0, 0.25);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #f2efe4;
+      background-image: radial-gradient(circle at 20% 10%, #fff8e0 0%, #e8e3d3 90%);
+      color: var(--ink);
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      line-height: 1.5;
+    }
+    .top-stripe {
+      width: 100%;
+      max-width: 720px;
+      height: 6px;
+      background: linear-gradient(90deg, #d64b4b 0% 33%, #f5c542 33% 66%, #2d6a4f 66% 100%);
+      border-radius: 99px;
+      margin-bottom: 1.5rem;
+    }
+    .wrapper {
+      width: 100%;
+      max-width: 720px;
+    }
+    /* header */
+    .official-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 14px;
+      border-bottom: 3px solid var(--forest);
+      margin-bottom: 1.5rem;
+    }
+    .seal {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--deep);
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      border: 4px double var(--gold);
+      color: var(--gold);
+      flex-shrink: 0;
+      box-shadow: 0 4px 0 #00000022;
+    }
+    .header-text .ministry {
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--forest);
+      text-transform: uppercase;
+    }
+    .header-text .sub {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .header-text .sub small {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+    .stamp {
+      margin-left: auto;
+      border: 2px solid var(--red);
+      color: var(--red);
+      padding: 6px 8px;
+      font-size: 0.6rem;
+      font-weight: 1000;
+      letter-spacing: 1.2px;
+      transform: rotate(6deg);
+      border-radius: 6px;
+      text-align: center;
+      line-height: 1.3;
+      flex-shrink: 0;
+    }
+    .disclaimer {
+      background: #fff3c9;
+      border-left: 5px solid #e0a800;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      margin-bottom: 1.6rem;
+      color: #3d3520;
+      box-shadow: 0 2px 0 #00000008;
+    }
+
+    /* ---- NEW: INVITE MESSAGE BOX ---- */
+    .invite-box {
+      background: #fffdf5;
+      border: 2px dashed var(--leaf);
+      border-radius: 16px;
+      padding: 1.4rem 1.3rem;
+      margin-bottom: 1.6rem;
+      box-shadow: 0 6px 0 #d9d1bd;
+      position: relative;
+    }
+    .invite-box::before {
+      content: "📨 A MESSAGE FROM THE MINISTER";
+      position: absolute;
+      top: -12px;
+      left: 16px;
+      background: var(--leaf);
+      color: #fff9e9;
+      font-size: 0.6rem;
+      font-weight: 1000;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+    .invite-box p {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #2c3d30;
+      margin: 0.4rem 0 0;
+    }
+    .invite-box p + p {
+      margin-top: 0.8rem;
+    }
+    .invite-box strong {
+      color: var(--forest);
+    }
+    .invite-box .highlight {
+      background: linear-gradient(120deg, #f5c54266 0%, #f5c54244 100%);
+      padding: 0 4px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .invite-box .ps {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 1rem;
+      border-top: 1px dotted #d9d1bd;
+      padding-top: 0.8rem;
+    }
+
+    /* hero */
+    .hero {
+      background: var(--deep);
+      background-image: radial-gradient(circle at 100% 0%, #2d6a4f44 0%, transparent 60%);
+      border-radius: 24px;
+      padding: 2rem 1.5rem 2.2rem;
+      color: #fff9e9;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 0 #cfc7b2, 0 20px 30px -10px #00000033;
+      margin-bottom: 2rem;
+      border: 1px solid #4a7c5e;
+    }
+    .hero::after {
+      content: "🎉";
+      position: absolute;
+      right: -10px;
+      bottom: -30px;
+      font-size: 8rem;
+      opacity: 0.08;
+      transform: rotate(-10deg);
+      pointer-events: none;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--deep);
+      font-size: 0.65rem;
+      font-weight: 1000;
+      letter-spacing: 1.5px;
+      padding: 5px 12px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+    .hero h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.2rem, 8vw, 3.5rem);
+      line-height: 1.05;
+      margin-bottom: 0.8rem;
+      max-width: 90%;
+      text-shadow: 0 2px 0 #00000044;
+    }
+    .hero p {
+      color: #d4e6d9;
+      font-size: 0.95rem;
+      max-width: 95%;
+      margin-bottom: 0.2rem;
+    }
+    .hero strong {
+      color: var(--gold);
+    }
+    .creator-tag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.78rem;
+      background: #ffffff14;
+      border: 1px dashed #f5c54266;
+      padding: 6px 14px;
+      border-radius: 40px;
+      color: #f5e6b0;
+      letter-spacing: 0.5px;
+    }
+    .creator-tag span {
+      color: var(--gold);
+      font-weight: 800;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      transition: transform 0.1s, filter 0.15s, box-shadow 0.1s;
+      text-decoration: none;
+      line-height: 1.2;
+      margin-top: 1.2rem;
+    }
+    .btn:active {
+      transform: translateY(3px);
+      box-shadow: none;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: #1a2e1f;
+      box-shadow: 0 5px 0 #b38f1f;
+    }
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+    .btn-secondary {
+      background: #e9efe9;
+      color: var(--forest);
+      border: 1px solid #bfcfc2;
+      box-shadow: 0 4px 0 #c2beb0;
+    }
+    .btn-secondary:hover {
+      background: #dde7dd;
+    }
+    .btn-wa {
+      background: #25D366;
+      color: #0b2618;
+      box-shadow: 0 5px 0 #128C7E;
+    }
+    .btn-wa:hover {
+      filter: brightness(1.05);
+    }
+    /* cards */
+    .section {
+      margin-top: 1.8rem;
+    }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      font-weight: 900;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .card {
+      background: #fffdf5;
+      border: 1px solid #e3dccb;
+      border-radius: 18px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 6px 0 #d9d1bd;
+    }
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .progress-track {
+      height: 9px;
+      background: #e3e6dd;
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 1.4rem;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--leaf);
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+    .q-emoji {
+      font-size: 2.6rem;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .q-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      line-height: 1.25;
+      margin-bottom: 1.3rem;
+    }
+    .answers {
+      display: grid;
+      gap: 0.8rem;
+    }
+    .answer-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border: 1px solid #d0d9d0;
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-align: left;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background 0.1s, border 0.1s;
+      width: 100%;
+      line-height: 1.3;
+    }
+    .answer-btn:hover {
+      border-color: var(--leaf);
+      background: #f0f9f0;
+    }
+    .answer-btn.selected {
+      border: 2px solid var(--leaf);
+      background: #e6f3e6;
+    }
+    .answer-btn:disabled {
+      opacity: 0.8;
+      cursor: default;
+    }
+    .answer-btn .bullet {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      background: #edf2ea;
+      border-radius: 10px;
+      font-weight: 1000;
+      color: var(--forest);
+      flex-shrink: 0;
+    }
+    .reaction {
+      background: #fff3c9;
+      border-left: 5px solid #e0a800;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-weight: 800;
+      color: #3d3520;
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+    }
+    /* results */
+    .report {
+      background: var(--deep);
+      border: 2px dashed var(--gold);
+      border-radius: 18px;
+      padding: 1.8rem 1.5rem;
+      color: #fefae0;
+      position: relative;
+      margin-bottom: 1rem;
+      box-shadow: 0 12px 0 #bfb8a5;
+    }
+    .report::before {
+      content: "CASE FILE";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.55rem;
+      font-weight: 1000;
+      letter-spacing: 1.5px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transform: rotate(5deg);
+      opacity: 0.9;
+    }
+    .report .eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .report h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.9rem;
+      line-height: 1.05;
+      max-width: 75%;
+      margin-bottom: 0.5rem;
+      color: #fff9e9;
+    }
+    .report .muted {
+      color: #bcd6c6;
+      font-size: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #2e4d3b;
+      padding: 0.75rem 0;
+      font-size: 0.85rem;
+    }
+    .stat strong {
+      color: var(--gold);
+      text-align: right;
+    }
+    .verdict-box {
+      background: #fefae0;
+      color: #17231e;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1.2rem 0;
+      font-weight: 800;
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+    .signature {
+      color: var(--gold);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      margin-top: 0.8rem;
+    }
+    .fine-print {
+      font-size: 0.68rem;
+      color: #7b8279;
+      text-align: center;
+      line-height: 1.6;
+      margin: 1.8rem 0.5rem 0.5rem;
+    }
+    .fine-print a {
+      color: var(--forest);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px dotted;
+    }
+    footer {
+      border-top: 1px solid #d7d0bd;
+      margin-top: 2.2rem;
+      padding-top: 1.2rem;
+      text-align: center;
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      color: #7b8279;
+      text-transform: uppercase;
+    }
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--deep);
+      color: #fefae0;
+      padding: 0.8rem 1.4rem;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 10px 30px #00000055;
+      z-index: 999;
+      max-width: calc(100% - 32px);
+      text-align: center;
+      border: 1px solid #f5c54288;
+      transition: opacity 0.3s;
+    }
+    .hidden {
+      display: none !important;
+    }
+    /* responsive */
+    @media (min-width: 600px) {
+      .answers {
+        grid-template-columns: 1fr 1fr;
+      }
+      .answer-btn {
+        min-height: 85px;
+      }
+      .hero {
+        padding: 2.5rem 2.5rem 2.8rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-stripe"></div>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <header class="official-header">
+      <div class="seal" aria-hidden="true">⚖️</div>
+      <div class="header-text">
+        <div class="ministry">Republic of Weekend Vibes</div>
+        <div class="sub">Ministry of Group Wahala <small>· by Yayoung Wisdom</small></div>
+      </div>
+      <div class="stamp">TOP<br>WAHALA</div>
+    </header>
+
+    <div class="disclaimer">
+      <strong>📢 PUBLIC NOTICE:</strong> This is a 100% fictional comedy experience created by <strong>Yayoung Wisdom</strong> for weekend fun. No real government, agency, or authority is involved. All charges are jokes. Laugh responsibly.
+    </div>
+
+    <!-- ---- NEW: SHORT CONVINCING MESSAGE ---- -->
+    <div class="invite-box">
+      <p>🚨 <strong>BREAKING:</strong> Your group chat has been reported for <span class="highlight">excessive weekend foolishness.</span></p>
+      <p>We need <strong>one brave soul</strong> to face the investigation. 4 quick questions. One official verdict. Then you share it with the group and watch everyone panic.</p>
+      <p><strong>Warning:</strong> This is dangerously funny. Open at your own risk. 😂</p>
+      <p class="ps">— Yayoung Wisdom, Minister of Weekend Chaos (self-appointed)</p>
+    </div>
+
+    <!-- HERO / WELCOME -->
+    <section class="hero" id="welcome">
+      <div class="badge">🔍 Case File #WKND-2026</div>
+      <h1>Your group chat has been summoned.</h1>
+      <p>Our highly unqualified investigators have detected <strong>dangerous levels of weekend foolishness</strong> in your circle. One brave representative must answer 4 questions. No lawyers. No escape.</p>
+      <div class="creator-tag">🛠️ Built by <span>Yayoung Wisdom</span> · just for laughs</div>
+      <button class="btn btn-primary" id="startBtn">🔓 OPEN THE CASE FILE</button>
+    </section>
+
+    <!-- INVESTIGATION -->
+    <section class="section hidden" id="investigation" aria-live="polite">
+      <div class="section-label">⚡ Interrogation in progress</div>
+      <div class="card">
+        <div class="progress-row">
+          <span id="stepLabel">Question 1 of 4</span>
+          <span id="percentLabel">25%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="q-emoji" id="qEmoji">🕵️</div>
+        <h2 class="q-text" id="qText"></h2>
+        <div class="answers" id="answersContainer"></div>
+        <div id="reactionBox" class="reaction hidden"></div>
+        <button class="btn btn-primary hidden" id="nextBtn">NEXT QUESTION ➜</button>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="section hidden" id="results" aria-live="polite">
+      <div class="section-label">📋 Investigation concluded</div>
+      <div class="report" id="reportCard">
+        <div class="eyebrow">Official case summary · MGW-WKND-001</div>
+        <h2 id="verdictTitle">GUILTY OF WEEKEND CHAOS</h2>
+        <p class="muted">Reviewed by absolutely nobody. Approved by Yayoung Wisdom (probably).</p>
+        <div class="stat"><span>Group intelligence</span><strong id="intelligenceScore">2/100</strong></div>
+        <div class="stat"><span>Foolishness detected</span><strong>MAXIMUM</strong></div>
+        <div class="stat"><span>Threat to Monday</span><strong>SEVERE</strong></div>
+        <div class="stat"><span>Official recommendation</span><strong>TOUCH GRASS</strong></div>
+        <div class="verdict-box" id="sentenceBox">Sentence: Each member must donate one meat pie and issue a public apology to the group administrator.</div>
+        <p class="muted" id="chargeLine" style="margin-top:0.5rem;"></p>
+        <p class="signature">Signed, The Honourable Minister of Nonsense ✍🏾</p>
+      </div>
+      <button class="btn btn-wa" id="shareBtn">📲 SEND VERDICT TO WHATSAPP</button>
+      <button class="btn btn-secondary" id="againBtn">🔁 INVESTIGATE AGAIN</button>
+      <p class="fine-print">Sharing opens WhatsApp with a message you can review before sending. Nothing is sent automatically. Created with 😂 by <strong>Yayoung Wisdom</strong>.</p>
+    </section>
+
+    <p class="fine-print">
+      Official-looking nonsense since approximately five minutes ago.<br>
+      Department of Unnecessary Noise · A <strong>Yayoung Wisdom</strong> weekend production.
+    </p>
+    <footer>
+      MINISTRY OF GROUP WAHALA · KEEP CALM AND DENY EVERYTHING
+    </footer>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <script>
+    (function() {
+      // ----- DATA -----
+      const questions = [
+        {
+          emoji: "📩",
+          text: "A message lands in the group. You read it immediately. What happens next?",
+          answers: [
+            ["Reply like a responsible citizen", "Responsible? That's not in our records."],
+            ["Read it, then disappear for 3–5 business days", "A CLASSIC. Our investigators are emotional."],
+            ["Send “😂😂😂” without knowing what happened", "Emoji-based evidence has been added to your file."],
+            ["Ask “What did I miss?” after 87 messages", "You are the reason the group needs minutes."]
+          ]
+        },
+        {
+          emoji: "🛏️",
+          text: "You said “I'm on my way.” Where are you REALLY?",
+          answers: [
+            ["Already outside", "Suspiciously organised. We don't trust it."],
+            ["Still in bed, negotiating with my pillow", "The pillow has been summoned as a witness."],
+            ["In the bathroom, choosing an outfit", "Fashion has delayed national development."],
+            ["I haven't even bathed", "Thank you for your cooperation, criminal."]
+          ]
+        },
+        {
+          emoji: "🎙️",
+          text: "Your voice note is 6 minutes and 42 seconds. What is it about?",
+          answers: [
+            ["A very important announcement", "Could have been 12 words. Case noted."],
+            ["A story with 14 unnecessary plot twists", "Netflix has requested your services."],
+            ["I forgot what I was saying halfway", "The ministry understands. Unfortunately."],
+            ["I sent it by mistake and vanished", "INTERPOL has been notified. (Not really.)"]
+          ]
+        },
+        {
+          emoji: "👀",
+          text: "The admin says, “Everyone should contribute.” You…",
+          answers: [
+            ["Pay immediately", "Who sent you? The auditor general?"],
+            ["Type “noted” and become a ghost", "Your “noted” has been entered into evidence."],
+            ["Ask if MoMo charges are included", "A financially conscious suspect. Interesting."],
+            ["Mute the group for one year", "You have chosen the witness protection programme."]
+          ]
+        }
+      ];
+
+      const charges = [
+        "Aggravated emoji deployment without context",
+        "First-degree “I'm coming” while still at home",
+        "Unlawful possession of 73 unread messages",
+        "Conspiracy to reply “😂” and contribute nothing",
+        "Reckless forwarding of messages without verification",
+        "Disturbing the peace with unnecessary voice notes",
+        "Pretending not to see the admin's announcement",
+        "Operating a certified gossip distribution centre",
+        "Leaving the group only to return two days later",
+        "Typing “hello guys” and refusing to explain why"
+      ];
+
+      const sentences = [
+        "Every member must contribute one meat pie, one bottle of malt, and a sincere apology to the group administrator.",
+        "The group is sentenced to 30 minutes of silence. This sentence will almost certainly be ignored.",
+        "All members must explain themselves in exactly three words. Voice notes are prohibited by imaginary law.",
+        "The admin has been promoted to Supreme Commander of Your Notifications. Appeal denied.",
+        "Each suspect must send the group one useful message before being allowed to post another meme."
+      ];
+
+      const verdictTitles = [
+        "GUILTY OF COLLECTIVE FOOLISHNESS",
+        "A NATIONAL NONSENSE EMERGENCY",
+        "THE GROUP CHAT IS UNDER ARREST",
+        "SUSPICIOUSLY UNSERIOUS CITIZENS",
+        "WEEKEND CHAOS LEVEL: CRITICAL"
+      ];
+
+      // ----- STATE -----
+      let currentQuestion = 0;
+      let selectedAnswers = [];
+      let primaryCharge = "";
+      let toastTimer = null;
+
+      // ----- DOM refs -----
+      const $ = id => document.getElementById(id);
+      const welcomeSection = $("welcome");
+      const investigationSection = $("investigation");
+      const resultsSection = $("results");
+      const startBtn = $("startBtn");
+      const nextBtn = $("nextBtn");
+      const shareBtn = $("shareBtn");
+      const againBtn = $("againBtn");
+      const stepLabel = $("stepLabel");
+      const percentLabel = $("percentLabel");
+      const progressFill = $("progressFill");
+      const qEmoji = $("qEmoji");
+      const qText = $("qText");
+      const answersContainer = $("answersContainer");
+      const reactionBox = $("reactionBox");
+      const verdictTitle = $("verdictTitle");
+      const intelligenceScore = $("intelligenceScore");
+      const sentenceBox = $("sentenceBox");
+      const chargeLine = $("chargeLine");
+      const toastEl = $("toast");
+
+      // ----- TOAST -----
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.remove("hidden");
+        toastEl.style.opacity = "1";
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastEl.style.opacity = "0";
+          setTimeout(() => toastEl.classList.add("hidden"), 300);
+        }, 2200);
+      }
+
+      // ----- START / RESET -----
+      function startInvestigation() {
+        currentQuestion = 0;
+        selectedAnswers = [];
+        primaryCharge = charges[Math.floor(Math.random() * charges.length)];
+
+        welcomeSection.classList.add("hidden");
+        resultsSection.classList.add("hidden");
+        investigationSection.classList.remove("hidden");
+
+        renderQuestion();
+        investigationSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // ----- RENDER QUESTION -----
+      function renderQuestion() {
+        const q = questions[currentQuestion];
+        const total = questions.length;
+
+        // progress
+        stepLabel.textContent = `Question ${currentQuestion + 1} of ${total}`;
+        const pct = Math.round(((currentQuestion + 1) / total) * 100);
+        percentLabel.textContent = `${pct}%`;
+        progressFill.style.width = `${pct}%`;
+
+        // question
+        qEmoji.textContent = q.emoji;
+        qText.textContent = q.text;
+
+        // reset reaction & next button
+        reactionBox.classList.add("hidden");
+        reactionBox.textContent = "";
+        nextBtn.classList.add("hidden");
+
+        // build answer buttons
+        answersContainer.innerHTML = "";
+        q.answers.forEach((answerPair, index) => {
+          const btn = document.createElement("button");
+          btn.className = "answer-btn";
+          btn.setAttribute("aria-label", answerPair[0]);
+          const bullet = document.createElement("span");
+          bullet.className = "bullet";
+          bullet.textContent = String.fromCharCode(65 + index); // A, B, C, D
+          const labelSpan = document.createElement("span");
+          labelSpan.textContent = answerPair[0];
+          btn.appendChild(bullet);
+          btn.appendChild(labelSpan);
+
+          btn.addEventListener("click", () => {
+            // prevent double selection for this question
+            if (selectedAnswers[currentQuestion] !== undefined) return;
+
+            // mark selection
+            selectedAnswers[currentQuestion] = index;
+
+            // disable all buttons for this question
+            Array.from(answersContainer.children).forEach(b => b.disabled = true);
+
+            // highlight selected
+            btn.classList.add("selected");
+
+            // show reaction
+            const reactionMsg = answerPair[1];
+            reactionBox.textContent = reactionMsg;
+            reactionBox.classList.remove("hidden");
+
+            // set next button text
+            if (currentQuestion === questions.length - 1) {
+              nextBtn.textContent = "⚖️ DELIVER THE VERDICT";
+            } else {
+              nextBtn.textContent = "NEXT QUESTION ➜";
+            }
+            nextBtn.classList.remove("hidden");
+          });
+
+          answersContainer.appendChild(btn);
+        });
+      }
+
+      // ----- NEXT / FINISH -----
+      function goNext() {
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          renderQuestion();
+          investigationSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          finishInvestigation();
+        }
+      }
+
+      // ----- FINISH & SHOW RESULTS -----
+      function finishInvestigation() {
+        investigationSection.classList.add("hidden");
+        resultsSection.classList.remove("hidden");
+
+        // compute intelligence score
+        let totalPenalty = 0;
+        selectedAnswers.forEach((ansIndex) => {
+          if (ansIndex === 0) totalPenalty += 4;
+          else if (ansIndex === 1) totalPenalty += 22;
+          else if (ansIndex === 2) totalPenalty += 17;
+          else totalPenalty += 25;
+        });
+        const score = Math.max(1, 100 - totalPenalty);
+        intelligenceScore.textContent = `${score}/100`;
+
+        // random verdict title
+        verdictTitle.textContent = verdictTitles[Math.floor(Math.random() * verdictTitles.length)];
+
+        // random sentence
+        const chosenSentence = sentences[Math.floor(Math.random() * sentences.length)];
+        sentenceBox.textContent = "Sentence: " + chosenSentence;
+
+        // charge line
+        chargeLine.textContent = `Primary charge: ${primaryCharge}. Additional evidence remains classified because the investigator is on lunch break.`;
+
+        // scroll to results
+        resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        showToast("✅ Verdict ready! Share it with the group.");
+      }
+
+      // ----- SHARE TO WHATSAPP -----
+      function shareToWhatsApp() {
+        const verdict = verdictTitle.textContent;
+        const sentenceText = sentenceBox.textContent.replace("Sentence: ", "");
+        const text = `🚨 *OFFICIAL WEEKEND WAHALA REPORT* 🚨\n\nOur group chat has been investigated by the Ministry of Group Wahala (created by Yayoung Wisdom).\n\n*Verdict:* ${verdict}\n*Primary charge:* ${primaryCharge}\n*Foolishness level:* MAXIMUM 💀\n*Sentence:* ${sentenceText}\n\nYour turn to face the investigation. Open the link and defend yourself! 😂`;
+        const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+        window.open(url, "_blank", "noopener,noreferrer");
+        showToast("📤 Opening WhatsApp...");
+      }
+
+      // ----- EVENT LISTENERS -----
+      startBtn.addEventListener("click", startInvestigation);
+      nextBtn.addEventListener("click", goNext);
+      shareBtn.addEventListener("click", shareToWhatsApp);
+      againBtn.addEventListener("click", () => {
+        startInvestigation();
+        showToast("🔁 New investigation started!");
+      });
+
+      // keyboard shortcut
+      window.addEventListener("keydown", (e) => {
+        if ((e.code === "Space" || e.code === "Enter") && !nextBtn.classList.contains("hidden")) {
+          if (document.activeElement && document.activeElement.tagName === "BUTTON") return;
+          e.preventDefault();
+          goNext();
+        }
+      });
+
+      // welcome toast
+      window.addEventListener("load", () => {
+        setTimeout(() => showToast("👋 Welcome! Case file ready. Tap START."), 600);
+      });
+
+      // easter egg
+      document.querySelector(".seal")?.addEventListener("dblclick", () => {
+        showToast("😂 Yayoung Wisdom says: 'Weekend approved!'");
+      });
+
+    })();
+  </script>
+</body>
+</html>
